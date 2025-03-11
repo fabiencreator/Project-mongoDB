@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulaire ajouter un nouveau livre</title>
+</head>
+<body>
+    <div>
+        <%- include("./nav.ejs")%>
+    </div>
+    <form action="/book-add" method="POST">
+        <label for="title">Titre du livre</label>
+        <input type="text" id="title" name="title" required>
+        <label for="author">Auteur du livre</label>
+        <input type="text" id="author" name="author" required>
+        <label for="year_of_publication">Année de publication du livre</label>
+        <input type="number" id="year_of_publication" name="year_of_publication" required>
+        <button type="submit">Envoyer</button>
+    </form>
+</body>
+</html>

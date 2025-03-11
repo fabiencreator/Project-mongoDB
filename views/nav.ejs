@@ -1,0 +1,25 @@
+<ul>
+    <li>
+        <a href="/">Page d'accueil</a>
+
+        <% if (user) { %>
+            <a href="/books">Liste des livres</a>
+        <% } %>
+        <% if (user) { %>
+        <a href="/book-formulaire-add">formulaire ajout des livres</a>
+        <% } %>
+
+        <% if (!user) { %>
+        <a href="/login">Connexion</a>
+        <% } %>
+        <% if (!user) { %>
+        <a href="/register">Inscription</a>
+        <% } %>
+
+        <% if (user) { %>
+        <form action="/logout" method="POST">
+            <button type="submit">Déconnexion</button>
+        </form>
+        <% } %>
+    </li>
+</ul>

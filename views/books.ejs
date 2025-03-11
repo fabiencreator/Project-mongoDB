@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des livres</title>
+</head>
+<body>
+    <div>
+        <%- include("./nav.ejs")%>
+    </div>
+    <main>
+        <h1>Bonjour bienvenue <%= user ? user.name : '' %> vous avez le role <%= user ? user.role : "" %></h1>
+        <% if (book && book.length > 0) { %>
+            <!-- foreach pour repeter les elements du tableau -->
+            <% book.forEach(function(book){ %>
+                <!-- inclut lien vers la page que j'affiche  -->
+                <h1>Name: <%= book.title%></h1>
+                <h2>Speciality: <%= book.author%></h2>
+                <h3>Description: <%= book.year_of_publication%></h3>
+                <h3>Propriétaire: <%= book.owner%></h3>
+                <a href="/book-formulaire-update/<%= book.id %>">Modifier</a>
+                <form action="/book-delete/<%= book.id %>?_method=DELETE" method="POST">
+                    <button type="submit">Supprimer</button>
+                </form>
+            <% }); %>
+            <% } else { %>
+                <li>Aucun livre trouvé.</li>
+            <% } %>
+    </main>
+</body>
+</html>
