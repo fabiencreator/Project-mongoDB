@@ -1,5 +1,5 @@
 💻 Installation des dépendances :
-    "bcrypt", "body-parser", "dotenv", "ejs", "express", "express-session", "method-override", "mongoose", "nodemon", "cors".
+    "bcrypt", "body-parser", "dotenv", "ejs", "express", "express-session", "method-override", "mongoose", "nodemon", "cors", "nodemailer".
 
 🔗 Connexion à la base de données MongoDB.
 
