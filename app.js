@@ -19,6 +19,11 @@ const port = process.env.PORT || 3005;
 // j'importe express-session 
 const session = require("express-session")
 
+// Importe cors
+const cors = require('cors');
+
+app.use(cors());
+
 //------------ Maintenir une session avec express session ----------
 app.use(session({
   secret: process.env.SESSION_SECRET,
