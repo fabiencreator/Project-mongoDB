@@ -28,4 +28,10 @@ router.post("/login-user", userController.loginUser)
 //deconnecté l'utilisateur
 router.post("/logout",authUserAdmin, userController.logout)
 
+// ---------------nodemailler-----------
+router.get("/mail-formulaire", userController.mailFormulaire)
+
+// ---------------nodemailer-----------
+router.post("/mail", userController.mail)
+
 module.exports = router

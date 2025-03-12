@@ -4,6 +4,18 @@ const bcrypt = require("bcrypt")
 // import de models books
 const User = require("../models/models.user")
 
+// Importe nodemailer
+const nodemailer = require('nodemailer');
+
+// Configuration de Nodemailer
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'votre_email@gmail.com',
+        pass: 'votre_mot_de_passe',
+    },
+});
+
 // --------------Inscription---------------
 // creation de la fonction async pour affichage de l'inscription
 exports.register = async (req, res) => {
@@ -112,6 +124,43 @@ exports.logout = async (req,res) => {
 
     res.status(200).redirect('/')
     
+    }catch(err){
+        console.log(err);
+        res.status(500).send("Erreur de la deconnexion")
+        
+    }
+}
+
+// -------nodemailer---------
+exports.mailFormulaire = async (req,res) => {
+    try{ 
+
+    res.status(200).render('form-nodemailer.ejs')
+    
+    }catch(err){
+        console.log(err);
+        res.status(500).send("Erreur de la deconnexion")
+        
+    }
+}
+
+exports.mail = async (req,res) => {
+
+    const { email, object, description } = req.body;
+
+    try{ 
+
+    const mailOptions = {
+        from: 'mail@gmail.com',
+        email,
+        object,
+        description,
+    };
+
+    transporter.sendMail(mailOptions, () => {
+        res.status(200).send({ message: 'Email envoyé avec succès' });
+    });
+
     }catch(err){
         console.log(err);
         res.status(500).send("Erreur de la deconnexion")
