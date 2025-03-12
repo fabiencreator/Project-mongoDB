@@ -13,6 +13,9 @@ const authAdmin = require("../middleware/authAdmin")
 // import de middleware 
 const authUserAdmin = require("../middleware/authUserAdmin")
 
+// import de middleware 
+const authuser = require("../middleware/authUser")
+
 // --------Home Page--------
 router.get('/', bookController.homePage)
 
@@ -22,10 +25,10 @@ router.get("/books",authUserAdmin, bookController.books)
 
 // ----------ajout----------
 // ajouter un nouveau livre
-router.get("/book-formulaire-add", authUserAdmin, bookController.bookFormulaireAdd)
+router.get("/book-formulaire-add", authuser, bookController.bookFormulaireAdd)
 
 // ajouter un nouveau livre
-router.post("/book-add", authUserAdmin, bookController.bookAdd)
+router.post("/book-add", authuser, bookController.bookAdd)
 
 // ---------Mise à jour---------
 // mise a jour d'un livre

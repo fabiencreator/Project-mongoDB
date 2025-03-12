@@ -13,7 +13,9 @@
         <% } %>
 
         <% if (user) { %>
+            <% if (user.role === "user") { %>
         <a href="/book-formulaire-add">formulaire ajout des livres</a>
+        <% } %>
         <% } %>
 
         <% if (!user) { %>
