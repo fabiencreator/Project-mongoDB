@@ -53,6 +53,7 @@ app.set("views", "./views");
 const connectDB = require("./dataBase/connect");
 const routeBook = require("./routes/route-book");
 const routeUser = require("./routes/route-user")
+const routeUserBook = require("./routes/route-user-book")
 
 // ---------------DataBase-------------
 // dataBase appelle la fonction du fichier connect
@@ -73,6 +74,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 // utilisation des routes 
 app.use(routeBook)
 app.use(routeUser)
+app.use(routeUserBook)
 
 // -----------PORT SERVER-----------
 // permet de demarrer le server

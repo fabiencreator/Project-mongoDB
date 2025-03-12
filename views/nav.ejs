@@ -5,6 +5,13 @@
         <% if (user) { %>
             <a href="/books">Liste des livres</a>
         <% } %>
+
+        <% if (user) { %>
+        <% if (user.role === "user") { %>
+            <a href="/books-user">Liste de vos livres</a>
+        <% } %>
+        <% } %>
+
         <% if (user) { %>
         <a href="/book-formulaire-add">formulaire ajout des livres</a>
         <% } %>

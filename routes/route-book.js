@@ -8,9 +8,6 @@ const router = express.Router()
 const bookController = require("../controller/controller-book")
 
 // import de middleware 
-const authuser = require("../middleware/authUser")
-
-// import de middleware 
 const authAdmin = require("../middleware/authAdmin")
 
 // import de middleware 
@@ -32,10 +29,10 @@ router.post("/book-add", authUserAdmin, bookController.bookAdd)
 
 // ---------Mise à jour---------
 // mise a jour d'un livre
-router.get("/book-formulaire-update/:id", authUserAdmin, bookController.bookFormulaireUpdate)
+router.get("/book-formulaire-update/:id", authAdmin, bookController.bookFormulaireUpdate)
 
 // mise a jour d'un livre
-router.put("/book-update/:id", authUserAdmin, bookController.bookUpdate)
+router.put("/book-update/:id", authAdmin, bookController.bookUpdate)
 
 // ---------Supprimer-------
 // ----------suppression un livre------

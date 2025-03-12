@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 // defini un model
 const userSchema = mongoose.Schema ({
+    book: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Book'}],
     email: {type: String, required:true},
     password: {type: String, required: true},
     name: {type: String, required: true},

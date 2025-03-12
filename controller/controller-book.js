@@ -1,6 +1,9 @@
 // import de models books
 const Book = require("../models/models.book")
 
+// import de models books
+const User = require("../models/models.user")
+
 // ----------Affichage---------
 
 exports.homePage = async (req, res) => {
@@ -61,6 +64,11 @@ exports.bookAdd = async (req, res) => {
         
         const saveBook = await book.save()
         console.log(saveBook);
+
+        await User.updateOne(
+            { _id: id },
+            { $push: {book: book._id} }
+        )
         
         res.status(201).redirect("/books")
     }
@@ -70,12 +78,12 @@ exports.bookAdd = async (req, res) => {
     }
 }
 
-// -------Modifier une recette------------
+// -------Modifier un live------------
 exports.bookFormulaireUpdate = async (req, res) => {
     const id = req.params.id
     console.log(id);
-
     try{
+
         const book = await Book.findById(id)
         // console.log(recipe);
         res.status(200).render("form-update.ejs", {book:book})
@@ -98,7 +106,7 @@ exports.bookUpdate = async (req,res) => {
     updateBook.owner = owner
 
      try{
-         
+        
          await Book.findByIdAndUpdate(id, updateBook)
 
              res.status(302).redirect("/books")
@@ -117,6 +125,16 @@ exports.bookUpdate = async (req,res) => {
     console.log(id);
     
     try{
+        const user = await User.findOne({ book: id });
+        console.log(user);
+
+        if (user) {
+            // Retirer l'ID du livre de l'utilisateur
+            // Cela convertit l'ID du livre (qui est généralement un ObjectId de MongoDB) en une chaîne de caractères
+            // Cela compare l'ID du livre actuel (bookId) avec l'ID du livre que l'on veux supprimer  
+            user.book = user.book.filter(bookId => bookId.toString() !== id);
+            await user.save();
+        }
 
         await Book.findByIdAndDelete(id)
 

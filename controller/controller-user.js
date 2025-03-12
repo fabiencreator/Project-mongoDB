@@ -26,7 +26,7 @@ exports.registerUser = async (req,res) => {
         let userExist = await User.findOne({email: email})
 
         if(userExist){
-            res.send("L'adresse mail existe déjà.")
+          return  res.send("L'adresse mail existe déjà.")
         }
 
         // hashé le mot de passe en utilisant le module Bcrypt

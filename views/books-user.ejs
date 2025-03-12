@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des livres</title>
+</head>
+<body>
+    <div>
+        <%- include("./nav.ejs")%>
+    </div>
+    <main>
+        <h1>Bonjour bienvenue <%= user ? user.name : '' %> voici vos livres</h1>
+        <% if (books && books.length > 0) { %>
+            <!-- foreach pour repeter les elements du tableau -->
+            <% books.forEach(function(books){ %>
+                <!-- inclut lien vers la page que j'affiche  -->
+                <h1>Name: <%= books.title%></h1>
+                <h2>Speciality: <%= books.author%></h2>
+                <h3>Description: <%= books.year_of_publication%></h3>
+                <h3>Propriétaire: <%= books.owner%></h3>
+
+                <a href="/book-formulaire-update-user/<%= books.id %>">Modifier</a>
+                
+            <% }); %>
+            <% } else { %>
+                <li>Aucun livre trouvé.</li>
+            <% } %>
+    </main>
+</body>
+</html>

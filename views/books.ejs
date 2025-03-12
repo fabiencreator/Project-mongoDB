@@ -19,10 +19,14 @@
                 <h2>Speciality: <%= book.author%></h2>
                 <h3>Description: <%= book.year_of_publication%></h3>
                 <h3>Propriétaire: <%= book.owner%></h3>
+                <% if (user.role === "admin") { %>
                 <a href="/book-formulaire-update/<%= book.id %>">Modifier</a>
-                <form action="/book-delete/<%= book.id %>?_method=DELETE" method="POST">
-                    <button type="submit">Supprimer</button>
-                </form>
+                <% } %>
+                <% if (user.role === "admin") { %>
+                    <form action="/book-delete/<%= book.id %>?_method=DELETE" method="POST">
+                        <button type="submit">Supprimer</button>
+                    </form>
+                    <% } %>
             <% }); %>
             <% } else { %>
                 <li>Aucun livre trouvé.</li>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulaire de modification d'un livre</title>
+</head>
+<body>
+    <div>
+        <%- include("./nav.ejs")%>
+    </div>
+    <form action="/book-update-user/<%= book.id%>?_method=PUT" method="POST">
+        <label for="title">Titre du livre</label>
+        <input type="text" id="title" name="title" required value="<%= book.title %>">
+        <label for="author">Auteur du livre</label>
+        <input type="text" id="author" name="author" required value="<%= book.author %>">
+        <label for="year_of_publication">année de publication du livre</label>
+        <input type="years" id="year_of_publication" name="year_of_publication" required value="<%= book.year_of_publication %>">
+        <button type="submit">Envoyer</button>
+    </form>
+</body>
+</html>
